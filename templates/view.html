@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Gestion des Clients</title>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        padding: 20px;
+        background-color: #f8f9fa;
+      }
+      .container {
+        max-width: 700px;
+      }
+      h2 {
+        margin-bottom: 20px;
+      }
+      .table th,
+      .table td {
+        vertical-align: middle;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h2 class="text-center">Liste des clients</h2>
+      <form action="/view" method="post" class="form-inline mb-3">
+        <input
+          type="text"
+          name="search_query"
+          class="form-control mr-2"
+          placeholder="Rechercher par nom ou société"
+        />
+        <button type="submit" class="btn btn-primary">Rechercher</button>
+      </form>
+
+      <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+          <tr>
+            <th>Société</th>
+            <th>SIREN</th>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Email</th>
+            <th>RIB</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for client in data %}
+          <tr>
+            <td>{{ client.Société }}</td>
+            <td>{{ client.Siren}}</td>
+            <td>{{ client.Nom }}</td>
+            <td>{{ client.Prenom }}</td>
+            <td>{{ client.Email }}</td>
+            <td>{{ client.Rib }}</td>
+            <td>
+              <a
+                href="{{ url_for('generate_pdf', client_id=loop.index0) }}"
+                class="btn btn-info"
+                >Générer le Mandat</a
+              >
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <br />
+      <a href="{{ url_for('index') }}" class="btn btn-secondary btn-block"
+        >Ajouter un autre client ou un document</a
+      >
+    </div>
+  </body>
+</html>

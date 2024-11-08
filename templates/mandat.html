@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <title>Mandat de Prélèvement</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 40px;
+        color: #333;
+      }
+      .header {
+        text-align: center;
+        font-size: 1.2em;
+        font-weight: bold;
+        margin-bottom: 20px;
+      }
+      .flex-container {
+        display: flex;
+        justify-content: space-between;
+      }
+      .section {
+        margin-bottom: 15px;
+      }
+      .column {
+        width: 48%;
+      }
+      .section-title {
+        font-weight: bold;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        font-size: 1.1em;
+        text-decoration: underline;
+      }
+      .info {
+        margin-bottom: 8px;
+      }
+      .info strong {
+        display: inline-block;
+        width: 150px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">Mandat de Prélèvement</div>
+    <div class="section">
+      <div class="section-title">Autorisation de Prélèvement</div>
+      <p>
+        En signant ce formulaire de mandat, vous autorisez (A)
+        <strong>{{ client['Société'] }}</strong> à envoyer des instructions à
+        votre banque pour débiter votre compte, et (B) votre banque à débiter
+        votre compte conformément aux instructions de
+        <strong>{{ client['Société'] }}</strong>.
+      </p>
+      <p>
+        Vous bénéficiez du droit d'être remboursé par votre banque selon les
+        conditions décrites dans la convention que vous avez passée avec elle.
+        Toute demande de remboursement doit être présentée dans les 8 semaines
+        suivant la date de débit de votre compte pour un prélèvement autorisé.
+      </p>
+    </div>
+
+    <div class="section">
+      <p><strong>Référence du Mandat :</strong> {{ client['reference'] }}</p>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <p class="info"><strong>Nom :</strong> {{ client['Nom'] }}</p>
+        <p class="info"><strong>Prénom :</strong> {{ client['Prénom'] }}</p>
+        <p class="info"><strong>Email :</strong> {{ client['Email'] }}</p>
+        <p class="info"><strong>SIREN :</strong> {{ client['Siren'] }}</p>
+        <p class="info"><strong>Adresse :</strong></p>
+        <p class="info">
+          <strong>Code Postal :</strong> {{ client['CodePostal'] }}
+        </p>
+        <p class="info"><strong>Ville :</strong></p>
+        <p class="info"><strong>Pays :</strong></p>
+        <p class="info"><strong>IBAN :</strong> {{ client['RIB'] }}</p>
+        <p class="info"><strong>BIC :</strong></p>
+      </div>
+      <div class="col">
+        <p class="info">
+          <strong>Nom du créancier :</strong> {{ client['Société'] }}
+        </p>
+        <p class="info"><strong>Identifiant Créancier SEPA :</strong></p>
+        <p class="info"><strong>Adresse :</strong></p>
+        <p class="info"><strong>Code Postal :</strong></p>
+        <p class="info"><strong>Ville :</strong> Paris</p>
+        <p class="info"><strong>Pays :</strong> France</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <p>Lieu : ______________________</p>
+      <p>Date : ______________________</p>
+      <p>Signature du débiteur :</p>
+      <br /><br />
+      <p>__________________________</p>
+    </div>
+  </body>
+</html>

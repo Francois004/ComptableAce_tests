@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Gestion des Clients</title>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        padding: 20px;
+        background-color: #f8f9fa;
+      }
+      .container {
+        max-width: 700px;
+      }
+      h2 {
+        margin-bottom: 20px;
+      }
+      .table th,
+      .table td {
+        vertical-align: middle;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h2>Uploader un fichier PDF pour Extraction et Conversion en Excel</h2>
+
+      <div class="section">
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+          <label for="file">Sélectionnez un fichier PDF :</label>
+          <input type="file" id="file" name="file" accept=".pdf" required />
+          <button type="submit">Uploader et Convertir en Excel</button>
+        </form>
+      </div>
+
+      {% if success %}
+      <div class="success">
+        Le fichier a été traité avec succès. Vous pouvez le télécharger
+        <a href="{{ success_url }}">ici</a>.
+      </div>
+      {% endif %} {% if error %}
+      <div class="error">Une erreur s'est produite : {{ error }}</div>
+      {% endif %}
+      <br />
+      <h2 class="text-center">Ajouter un client</h2>
+      <form action="/" method="post">
+        <div class="form-group">
+          <label for="societe">Société :</label>
+          <input type="text" class="form-control" name="societe" required />
+        </div>
+
+        <div class="form-group">
+          <label for="siren">SIREN :</label>
+          <input type="text" class="form-control" name="siren" required />
+        </div>
+
+        <div class="form-group">
+          <label for="nom">Nom :</label>
+          <input type="text" class="form-control" name="nom" required />
+        </div>
+
+        <div class="form-group">
+          <label for="prenom">Prénom :</label>
+          <input type="text" class="form-control" name="prenom" required />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email :</label>
+          <input type="email" class="form-control" name="email" required />
+        </div>
+
+        <div class="form-group">
+          <label for="rib">RIB :</label>
+          <input type="text" class="form-control" name="rib" required />
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">Ajouter</button>
+      </form>
+
+      <br />
+      <a href="{{ url_for('view') }}" class="btn btn-secondary btn-block"
+        >Voir tous les clients</a
+      >
+    </div>
+    <br />
+    <br />
+
+    <br />
+    <br />
+  </body>
+</html>
